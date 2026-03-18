@@ -48,6 +48,6 @@ jobs:
         # -Djib.to.auth.password:GitHub 會在任務啟動時，自動生成一個臨時的、僅限本次使用的 Token
         run: |
           mvn compile jib:build \
-            -Dimage=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \ 
+            -Dimage=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
             -Djib.to.auth.username=${{ github.actor }} \
             -Djib.to.auth.password=${{ secrets.GITHUB_TOKEN }}
