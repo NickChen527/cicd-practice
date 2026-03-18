@@ -24,19 +24,8 @@ public class AgentService {
   // 如果單純調用 model.generate()，AI 不會記得上一句說了什麼；透過 ConversationalChain，會把之前的對話歷史一起傳給模型
   ConversationalChain chain = ConversationalChain.builder().chatModel(model).build();
 
-  Scanner scanner = new Scanner(System.in);
-
-  public void chat() {
-    boolean keepChatting = true;
-    System.out.println("type any thing to start a chat, type \"exit\" to end the conversation");
-    while (keepChatting) {
-      String message = scanner.nextLine();
-      if ("exit".equalsIgnoreCase(message.trim())) {
-        keepChatting = false;
-      }
-      String response = sendMessageToAi(message);
-      System.out.println(response);
-    }
+  public String chat(String message){
+    return sendMessageToAi(message);
   }
 
   private String sendMessageToAi(String message) {
