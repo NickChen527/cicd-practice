@@ -139,19 +139,23 @@
 					</java>
 				</configuration>
 			</plugin>
-			<!-- jib 用的設定檔，不太知道做甚麼的 -->
+			<!-- jib 設定檔 -->
 			<plugin>
 				<groupId>com.google.cloud.tools</groupId>
 				<artifactId>jib-maven-plugin</artifactId>
 				<version>3.4.5</version>
 				<configuration>
+					<!-- 用這個 Image 作為 Base Image -->
 					<from>
-						<image>eclipse-temurin:17-jre-alpine</image>
+						<image>eclipse-temurin:21-jre-alpine</image>
 					</from>
 					<container>
-						<mainClass>your.package.name.Application</mainClass> <ports>
-						<port>8080</port>
-					</ports>
+						<!-- 告訴 JVM 啟動時要執行哪個 class -->
+						<mainClass>com.nick.ai_agent.Application</mainClass>
+						<!-- 宣告 container 對外開放 8080 port -->
+						<ports>
+							<port>8080</port>
+						</ports>
 					</container>
 				</configuration>
 			</plugin>
