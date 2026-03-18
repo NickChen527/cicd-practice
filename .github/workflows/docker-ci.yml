@@ -47,7 +47,8 @@ jobs:
         # -Djib.to.auth.username:發起 action 的 Github 帳號
         # -Djib.to.auth.password:GitHub 會在任務啟動時，自動生成一個臨時的、僅限本次使用的 Token
         run: |
+          LOWER_USER=$(echo "${{ github.actor }}" | tr '[:upper:]' '[:lower:]')
           mvn compile jib:build \
-            -Dimage=${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
+            -Dimage=${{ env.REGISTRY }}/${LOWER_USER}/${{ env.IMAGE_NAME }}:latest \
             -Djib.to.auth.username=${{ github.actor }} \
             -Djib.to.auth.password=${{ secrets.GITHUB_TOKEN }}
