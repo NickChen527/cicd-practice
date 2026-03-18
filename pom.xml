@@ -83,6 +83,13 @@
 			<artifactId>h2</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- 先用 JIB 自動產生 Docker File -->
+		<dependency>
+			<groupId>com.google.cloud.tools</groupId>
+			<artifactId>jib-maven-plugin</artifactId>
+			<version>3.4.5</version>
+			<scope>compile</scope>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -130,6 +137,22 @@
 					<java>
 						<googleJavaFormat/>
 					</java>
+				</configuration>
+			</plugin>
+			<!-- jib 用的設定檔，不太知道做甚麼的 -->
+			<plugin>
+				<groupId>com.google.cloud.tools</groupId>
+				<artifactId>jib-maven-plugin</artifactId>
+				<version>3.4.5</version>
+				<configuration>
+					<from>
+						<image>eclipse-temurin:17-jre-alpine</image>
+					</from>
+					<container>
+						<mainClass>your.package.name.Application</mainClass> <ports>
+						<port>8080</port>
+					</ports>
+					</container>
 				</configuration>
 			</plugin>
 		</plugins>
